@@ -1,3 +1,4 @@
+#region Anisprite dataset generation functions
 
 function anisprite_type_set(name, animation_data) { global.anisprite_types[$ name] = animation_data }
 
@@ -50,3 +51,5 @@ function anisprite_animation_add_frame_method(type_name, animation_index, animat
 }
 
 function anisprite_animation_set_step_method(type_name, animation_index, method_function) { global.anisprite_types[$ type_name][animation_index].step_method = (typeof(method_function) == "string") ? global.anisprite_methods[$ method_function] : method_function }
+
+#endregion

@@ -1,4 +1,4 @@
-/// @function Anisprite(animation_data, handler) 
+/// @function Anisprite(animation_data, [handler]) 
 /// @param {array, string} animation_data Formatted array containing sprites to use for animations and animation speeds
 /// @param {instance} handler Instance that this Anisprite is attached to. Used for animation function reference
 /// @desc Creates a struct-based "anisprite" instance using the given
@@ -18,6 +18,7 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 	flipped_y = false
 	face_direction = 0
 	face_direction_horizontal_flip = false
+	face_direction_vertical_flip = false
 	angle = 0
 	alpha = 1
 	anim = 0
@@ -33,7 +34,8 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 	current_step_method = undefined
 	step_counter = 0 //generic counter. Increments by timescale value (default: 1) every step() call, and resets at 216000 (1 hour at 60fps, normal speed)
 	/// @function step([timescale])
-	/// @desc processes anisprite animation
+	/// @param {real} timescale Multiplier for animation iteration and other time-sensitive processes
+	/// @desc Processes/updates the Anisprite
 	static step = function(timescale=1) {
 		var num_frames = frame_count()
 		var current_anim = animations[anim]
@@ -42,7 +44,7 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 			anim_frame = 0
 			_anim_frame_tracker = -1
 			anim_finished = false
-			if (current_anim.step_method != undefined) { current_step_method = method(self, current_anim.step_method) }
+			if (current_anim.step_method != undefined) { current_step_method = method(self, (typeof(current_anim.step_method) == "string") ? global.anisprite_methods[$ current_anim.step_method] : current_anim.step_method) }
 			else current_step_method = undefined
 		} 
 		else { //iterate animation frame
@@ -55,12 +57,18 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 			if (c > 0 and flipped_x) { flipped_x = false }
 			else if (c < 0 and !flipped_x) { flipped_x = true }
 		}
+		//vertical flip
+		if (face_direction_vertical_flip) {
+			var s = -dsin(face_direction)
+			if (s > 0 and flipped_y) { flipped_y = false }
+			else if (s < 0 and !flipped_y) { flipped_y = true }
+		}
 		//iterate tick counter
 		step_counter += timescale
 		if (step_counter >= 216000) step_counter %= 216000
 	}
-	/// @function draw(x,y)
-	/// @desc draw anisprite with current settings
+	/// @function draw([x],[y])
+	/// @desc Draw Anisprite with current settings
 	static draw = function(inp_x=undefined,inp_y=undefined) {
 		if (alpha <= 0) return;
 		var draw_x = inp_x ?? x
@@ -99,12 +107,13 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 		anim_finished = false
 		if (anim_orientation >= array_length(animations[anim].sprites)) { anim_orientation = 0 }
 	}
-	/// @function set_anim_frame(new_frame, ignore_tracker)
+	/// @function set_anim_frame(new_frame, [ignore_anim_tracking])
 	/// @param {real} new_frame Animation frame to set
+	/// @param {boolean} ignore_anim_tracking When true, the animation tracking processes that cause frame methods and other such events to occur will be bypassed
 	/// @desc Change current anisprite animation frame while also adjusting frame event tracker
-	static set_anim_frame = function(new_frame, ignore_tracker=false) {
+	static set_anim_frame = function(new_frame, ignore_anim_tracking=false) {
 		anim_frame = new_frame
-		if (ignore_tracker) { _anim_frame_tracker = new_frame }
+		if (ignore_anim_tracking) { _anim_frame_tracker = new_frame }
 		else { _anim_frame_tracker = new_frame-1 }
 	}
 	/// @function advance_anim_frame([number_of_frames])
@@ -134,7 +143,7 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 					if (current_anim.frame_methods != undefined) { 
 						var funcs = current_anim.frame_methods
 						for (var i=0; i<array_length(funcs); i++) {
-							if (fr == funcs[i][0]) { method(self,funcs[i][1])() }
+							if (fr == funcs[i][0]) { method(self,(typeof(funcs[i][1]) == "string") ? global.anisprite_methods[$ funcs[i][1]] : funcs[i][1])() }
 						}
 					}
 				}
@@ -143,7 +152,7 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 		}
 	}
 	/// @function get_current_asset()
-	/// @desc returns an array containing the sprite asset and sub-image index that the selected Anisprite is currently set to draw
+	/// @desc returns an array containing the sprite asset and sub-image index that the Anisprite is currently set to draw
 	static get_current_asset = function() {
 		var subimg
 		if (animations[anim].frame_sequence != undefined) { subimg = animations[anim].frame_sequence[floor(anim_frame)] }

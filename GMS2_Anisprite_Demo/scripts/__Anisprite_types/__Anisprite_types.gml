@@ -16,12 +16,12 @@ global.anisprite_types[$ "example"] = [ //example anisprite
 	{sprites: [spr_KnightIdle, spr_KnightJump], //0: idle
 	offset_x: 0,
 	offset_y: 0,
-	frame_offset: undefined,
 	default_speed: 0.1,
-	frame_sequence: undefined,
 	loop_frame: 0,
+	frame_offset: undefined,
+	frame_sequence: undefined,
 	frame_methods: undefined,
-	step_method: global.anisprite_methods[$ "example: step method"]
+	step_method: "example: step method"
 	},
 	
 	{sprites: [spr_KnightAttack, spr_KnightAirAttack], //1: attack
@@ -43,7 +43,7 @@ global.anisprite_types[$ "example"] = [ //example anisprite
 	frame_sequence: undefined,
 	loop_frame: 0,
 	frame_methods: [ //create poof objects on step
-		[3, global.anisprite_methods[$ "example: frame method"]],
+		[3, "example: frame method"],
 		[7, global.anisprite_methods[$ "example: frame method"]],
 	],
 	step_method: global.anisprite_methods[$ "example: step method"]
