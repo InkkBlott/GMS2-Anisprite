@@ -1,0 +1,28 @@
+{
+  "FolderOrderSettings":[
+    {"name":"External Tools","order":1,"path":"folders/External Tools.yy",},
+    {"name":"Anisprite","order":1,"path":"folders/External Tools/Anisprite.yy",},
+    {"name":"Objects","order":2,"path":"folders/Objects.yy",},
+    {"name":"Rooms","order":5,"path":"folders/Rooms.yy",},
+    {"name":"Sprites","order":3,"path":"folders/Sprites.yy",},
+    {"name":"knight","order":1,"path":"folders/Sprites/knight.yy",},
+  ],
+  "ResourceOrderSettings":[
+    {"name":"fnt_0","order":6,"path":"fonts/fnt_0/fnt_0.yy",},
+    {"name":"[DEV] Tasklist","order":4,"path":"notes/[DEV] Tasklist/[DEV] Tasklist.yy",},
+    {"name":"readme","order":4,"path":"notes/readme/readme.yy",},
+    {"name":"obj_fx_poof","order":1,"path":"objects/obj_fx_poof/obj_fx_poof.yy",},
+    {"name":"__Anisprite_functions","order":5,"path":"scripts/__Anisprite_functions/__Anisprite_functions.yy",},
+    {"name":"__Anisprite_methods","order":3,"path":"scripts/__Anisprite_methods/__Anisprite_methods.yy",},
+    {"name":"__Anisprite_types","order":2,"path":"scripts/__Anisprite_types/__Anisprite_types.yy",},
+    {"name":"spr_fx_poof","order":2,"path":"sprites/spr_fx_poof/spr_fx_poof.yy",},
+    {"name":"spr_KnightAttack","order":1,"path":"sprites/spr_KnightAttack/spr_KnightAttack.yy",},
+    {"name":"spr_KnightDeath","order":2,"path":"sprites/spr_KnightDeath/spr_KnightDeath.yy",},
+    {"name":"spr_KnightGuard","order":3,"path":"sprites/spr_KnightGuard/spr_KnightGuard.yy",},
+    {"name":"spr_KnightGuardHit","order":4,"path":"sprites/spr_KnightGuardHit/spr_KnightGuardHit.yy",},
+    {"name":"spr_KnightHurt","order":5,"path":"sprites/spr_KnightHurt/spr_KnightHurt.yy",},
+    {"name":"spr_KnightIdle","order":6,"path":"sprites/spr_KnightIdle/spr_KnightIdle.yy",},
+    {"name":"spr_KnightJump","order":7,"path":"sprites/spr_KnightJump/spr_KnightJump.yy",},
+    {"name":"spr_KnightWalk","order":8,"path":"sprites/spr_KnightWalk/spr_KnightWalk.yy",},
+  ],
+}
