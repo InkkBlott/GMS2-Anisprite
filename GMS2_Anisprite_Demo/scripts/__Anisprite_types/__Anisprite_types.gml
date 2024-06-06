@@ -1,4 +1,4 @@
-//Anisprite types
+//Anisprite types/datasets
 //Each item in this struct should contain formatted animation data for an anisprite instance-struct to use
 global.anisprite_types = {}
 

@@ -28,7 +28,6 @@
   "name":"GMS2_Anisprite_Demo",
   "resources":[
     {"id":{"name":"fnt_0","path":"fonts/fnt_0/fnt_0.yy",},},
-    {"id":{"name":"[DEV] Tasklist","path":"notes/[DEV] Tasklist/[DEV] Tasklist.yy",},},
     {"id":{"name":"readme","path":"notes/readme/readme.yy",},},
     {"id":{"name":"obj_anisprite_test","path":"objects/obj_anisprite_test/obj_anisprite_test.yy",},},
     {"id":{"name":"obj_fx_poof","path":"objects/obj_fx_poof/obj_fx_poof.yy",},},

@@ -9,7 +9,6 @@
   ],
   "ResourceOrderSettings":[
     {"name":"fnt_0","order":6,"path":"fonts/fnt_0/fnt_0.yy",},
-    {"name":"[DEV] Tasklist","order":4,"path":"notes/[DEV] Tasklist/[DEV] Tasklist.yy",},
     {"name":"readme","order":4,"path":"notes/readme/readme.yy",},
     {"name":"obj_fx_poof","order":1,"path":"objects/obj_fx_poof/obj_fx_poof.yy",},
     {"name":"__Anisprite_functions","order":5,"path":"scripts/__Anisprite_functions/__Anisprite_functions.yy",},

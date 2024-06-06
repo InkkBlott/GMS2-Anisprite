@@ -44,31 +44,11 @@ function Anisprite(animation_data, inp_handler=noone) constructor {
 			anim_finished = false
 			if (current_anim.step_method != undefined) { current_step_method = method(self, current_anim.step_method) }
 			else current_step_method = undefined
-		} else {
-			anim_frame += current_anim.default_speed*anim_speed_scale*timescale
-			if (anim_frame >= num_frames) {
-				if (!anim_finished) {
-					anim_finished = true
-					if (anim_end_invisibility) alpha = 0
-				}
-				if (current_anim.loop_frame == undefined) { anim_frame = num_frames-1 }
-				else { anim_frame = current_anim.loop_frame+frac(anim_frame) }
-			}
+		} 
+		else { //iterate animation frame
+			advance_anim_frame(current_anim.default_speed*anim_speed_scale*timescale)
 		}
 		if (current_step_method != undefined) current_step_method()
-		var fr = floor(anim_frame)
-		if (anim_functions_active) {
-			while (_anim_frame_tracker != fr) {
-				_anim_frame_tracker ++
-				if (_anim_frame_tracker >= num_frames) { _anim_frame_tracker = min(current_anim.loop_frame, fr) }
-				if (current_anim.frame_methods != undefined) { 
-					var funcs = current_anim.frame_methods
-					for (var i=0; i<array_length(funcs); i++) {
-						if (fr == funcs[i][0]) { method(self,funcs[i][1])() }
-					}
-				}
-			}
-		} else if (_anim_frame_tracker != fr) { _anim_frame_tracker = fr }
 		//horizontal flip
 		if (face_direction_horizontal_flip) {
 			var c = dcos(face_direction)
